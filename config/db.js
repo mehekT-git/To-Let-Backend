@@ -1,17 +1,19 @@
+// const mongoose = require("mongoose");
+
 const mongoose = require("mongoose");
 
 const connectDB = async () => {
-  try {
-    const connectionInstance = await mongoose.connect(
-      `${process.env.MONGODB_URI}`
-    );
-    console.log(
-      `\n MongoDB conncted !! DB HOST: ${connectionInstance.connection.host}`
-    );
-  } catch (error) {
-    console.log("MONGODB connection failed ", error);
-    process.exit(1);
-  }
+    try {
+        await mongoose.connect("mongodb+srv://toletglobetech:ToletGlobe%401234@toletglobe.ux8lg4n.mongodb.net/blog?retryWrites=true&w=majority", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("MongoDB Connected...");
+    } catch (err) {
+        console.error("MONGODB connection failed:", err.message);
+        process.exit(1); // Exit process with failure
+    }
 };
 
-module.exports = { connectDB };
+module.exports = connectDB;
+
